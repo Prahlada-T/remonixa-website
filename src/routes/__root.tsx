@@ -55,8 +55,8 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: "/remonixa-logo.png" },
-      { rel: "apple-touch-icon", href: "/remonixa-logo.png" },
+      { rel: "icon", type: "image/png", href: "/remonixa-icon.png" },
+      { rel: "apple-touch-icon", href: "/remonixa-icon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
