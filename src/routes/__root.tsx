@@ -43,15 +43,18 @@ export const Route = createRootRoute({
         content:
           "Professional VAPT, Web, Network, and API security testing services to protect your business from cyber threats.",
       },
-      { name: "twitter:image", content: "/remonixa-logo.png" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/951cb5f5-11d5-47ff-b97e-4784d3ab8f0e" },
       { property: "og:title", content: "Remonixa Technology | Cybersecurity & VAPT Solutions" },
       {
         property: "og:description",
         content:
           "Professional VAPT, Web, Network, and API security testing services to protect your business from cyber threats.",
       },
-      { property: "og:image", content: "/remonixa-logo.png" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/951cb5f5-11d5-47ff-b97e-4784d3ab8f0e" },
       { property: "og:type", content: "website" },
+      { name: "description", content: "Remonixa Technology provides professional VAPT (Vulnerability Assessment and Penetration Testing), Web Application Security, Network Security, and API Security" },
+      { property: "og:description", content: "Remonixa Technology provides professional VAPT (Vulnerability Assessment and Penetration Testing), Web Application Security, Network Security, and API Security" },
+      { name: "twitter:description", content: "Remonixa Technology provides professional VAPT (Vulnerability Assessment and Penetration Testing), Web Application Security, Network Security, and API Security" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
