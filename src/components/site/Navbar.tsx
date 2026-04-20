@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import remonixaLogo from "@/assets/remonixa-logo-round.png";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -17,34 +16,18 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#020617]/80 border-b border-white/5">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
-        {/* Brand */}
+        {/* Brand — wordmark only */}
         <a
           href="#top"
-          className="group flex items-center gap-3 sm:gap-4"
+          className="group inline-flex items-baseline gap-3"
           aria-label="Remonixa Technology"
         >
-          {/* Circular logo */}
-          <div className="relative shrink-0">
-            <div
-              className="absolute inset-0 rounded-full bg-[#1e90ff]/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-              aria-hidden="true"
-            />
-            <img
-              src={remonixaLogo}
-              alt="Remonixa Technology logo"
-              className="relative h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover drop-shadow-[0_4px_12px_rgba(2,6,23,0.6)] transition-transform duration-300 group-hover:scale-[1.03]"
-            />
-          </div>
-
-          {/* Wordmark bar */}
-          <div className="relative flex flex-col justify-center rounded-lg px-3 sm:px-4 py-1.5 bg-gradient-to-r from-[#020617] via-[#050d1f] to-[#020617] border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
-            <span className="font-semibold tracking-tight text-lg sm:text-xl leading-none bg-gradient-to-r from-[#7dd3fc] via-[#60a5fa] to-[#3b82f6] bg-clip-text text-transparent">
-              Remonixa
-            </span>
-            <span className="mt-1 text-[9px] sm:text-[10px] font-medium tracking-[0.28em] text-slate-400 leading-none">
-              TECHNOLOGY
-            </span>
-          </div>
+          <span className="font-bold tracking-tight text-2xl sm:text-3xl leading-none bg-gradient-to-r from-[#7dd3fc] via-[#60a5fa] to-[#3b82f6] bg-clip-text text-transparent transition-opacity duration-300 group-hover:opacity-90">
+            Remonixa
+          </span>
+          <span className="text-[10px] sm:text-xs font-medium tracking-[0.28em] text-slate-400 leading-none">
+            TECHNOLOGY
+          </span>
         </a>
 
         {/* Desktop nav */}
