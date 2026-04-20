@@ -1,11 +1,20 @@
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+
+const EMAILJS_SERVICE_ID = "service_d0ng3rj";
+const EMAILJS_PUBLIC_KEY = "tHxbSlXGKCFiE0EnK";
+const EMAILJS_ADMIN_TEMPLATE_ID = "template_dfhpwn7";
+const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_7up5tjh";
+const RATE_LIMIT_KEY = "remonixa_contact_submissions";
+const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name required").max(100),
@@ -15,10 +24,28 @@ const schema = z.object({
   message: z.string().trim().min(10, "Tell us a bit more (10+ chars)").max(2000),
 });
 
+function getRecentSubmissions(): number[] {
+  try {
+    const raw = localStorage.getItem(RATE_LIMIT_KEY);
+    if (!raw) return [];
+    const arr = JSON.parse(raw) as number[];
+    const cutoff = Date.now() - RATE_LIMIT_WINDOW_MS;
+    return Array.isArray(arr) ? arr.filter((t) => typeof t === "number" && t > cutoff) : [];
+  } catch {
+    return [];
+  }
+}
+
+function recordSubmission() {
+  const recent = getRecentSubmissions();
+  recent.push(Date.now());
+  localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(recent));
+}
+
 export function Contact() {
   const [submitting, setSubmitting] = useState(false);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form));
@@ -27,12 +54,47 @@ export function Contact() {
       toast.error(result.error.issues[0]?.message ?? "Please check the form");
       return;
     }
+
+    const recent = getRecentSubmissions();
+    if (recent.length >= RATE_LIMIT_MAX) {
+      toast.error("Daily limit reached (3 submissions per day). Please try again tomorrow.");
+      return;
+    }
+
+    const { name, email, company, website, message } = result.data;
+    const templateParams = {
+      name,
+      email,
+      company: company || "—",
+      website: website || "—",
+      message,
+      to_email: "remonixanotify@gmail.com",
+      reply_to: email,
+    };
+
     setSubmitting(true);
-    setTimeout(() => {
-      toast.success("Request received. We'll be in touch within 24 hours.");
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_ADMIN_TEMPLATE_ID,
+        templateParams,
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_AUTOREPLY_TEMPLATE_ID,
+        templateParams,
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
+      recordSubmission();
+      toast.success("Your request has been sent successfully. We will contact you within 24 hours.");
       form.reset();
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      toast.error("Failed to send. Please try again or email us directly.");
+    } finally {
       setSubmitting(false);
-    }, 800);
+    }
   }
 
   return (
