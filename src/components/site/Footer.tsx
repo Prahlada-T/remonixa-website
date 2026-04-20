@@ -5,7 +5,9 @@ export function Footer() {
     <footer className="border-t border-border/40 py-10">
       <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center">
-          <img src={remonixaLogo} alt="Remonixa Technology" className="h-10 w-auto object-contain" />
+          <div className="rounded-md bg-white px-3 py-1.5">
+            <img src={remonixaLogo} alt="Remonixa Technology" className="h-8 w-auto object-contain" />
+          </div>
         </div>
         <div className="text-sm text-muted-foreground">
           © {new Date().getFullYear()} Remonixa Technology. All rights reserved.
