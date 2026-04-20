@@ -29,12 +29,34 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "description", content: "Remonixa Technology" },
+      { title: "Remonixa Technology | Cybersecurity & VAPT Solutions" },
+      {
+        name: "description",
+        content:
+          "Professional VAPT, Web, Network, and API security testing services to protect your business from cyber threats.",
+      },
       { name: "author", content: "Remonixa Technology" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Remonixa Technology | Cybersecurity & VAPT Solutions" },
+      {
+        name: "twitter:description",
+        content:
+          "Professional VAPT, Web, Network, and API security testing services to protect your business from cyber threats.",
+      },
+      { name: "twitter:image", content: "/remonixa-logo.png" },
+      { property: "og:title", content: "Remonixa Technology | Cybersecurity & VAPT Solutions" },
+      {
+        property: "og:description",
+        content:
+          "Professional VAPT, Web, Network, and API security testing services to protect your business from cyber threats.",
+      },
+      { property: "og:image", content: "/remonixa-logo.png" },
+      { property: "og:type", content: "website" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/png", href: "/remonixa-logo.png" },
+      { rel: "apple-touch-icon", href: "/remonixa-logo.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
