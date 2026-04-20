@@ -49,8 +49,8 @@ export function Contact() {
 
           <div className="mt-10 space-y-5">
             {[
-              { icon: Mail, label: "hello@remonixa.com" },
-              { icon: Phone, label: "+1 (555) 010-2024" },
+              { icon: Mail, label: "remonixanotify@gmail.com" },
+              { icon: Phone, label: "+91 63050 19607" },
               { icon: MapPin, label: "Remote · Global engagements" },
             ].map((c) => (
               <div key={c.label} className="flex items-center gap-3">
