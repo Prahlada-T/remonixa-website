@@ -4,9 +4,8 @@ export function Footer() {
   return (
     <footer className="border-t border-border/40 py-10">
       <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2.5">
-          <img src={remonixaLogo} alt="Remonixa Technology logo" className="h-7 w-7 rounded-full object-contain" />
-          <span className="font-display font-bold">Remonixa Technology</span>
+        <div className="flex items-center">
+          <img src={remonixaLogo} alt="Remonixa Technology" className="h-10 w-auto object-contain" />
         </div>
         <div className="text-sm text-muted-foreground">
           © {new Date().getFullYear()} Remonixa Technology. All rights reserved.
