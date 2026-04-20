@@ -1,5 +1,5 @@
-import { Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import remonixaLogo from "@/assets/remonixa-logo.png";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -13,13 +13,17 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <a href="#top" className="flex items-center gap-2 group">
+        <a href="#top" className="flex items-center gap-2.5 group">
           <div className="relative">
-            <Shield className="h-6 w-6 text-primary" strokeWidth={2.2} />
-            <div className="absolute inset-0 blur-md bg-primary/40 group-hover:bg-primary/70 transition" />
+            <img
+              src={remonixaLogo}
+              alt="Remonixa Technology logo"
+              className="h-9 w-9 rounded-full object-contain"
+            />
+            <div className="absolute inset-0 rounded-full blur-md bg-primary/30 group-hover:bg-primary/60 transition -z-10" />
           </div>
           <span className="font-display font-bold text-lg tracking-tight">
-            Remonixa<span className="text-primary">.</span>
+            Remonixa<span className="text-primary"> Technology</span>
           </span>
         </a>
 
