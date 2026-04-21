@@ -30,9 +30,17 @@ export function ReportPreview() {
             ))}
           </div>
 
-          <Button asChild size="lg" className="mt-8 bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_30px_-6px_var(--primary)]">
-            <a href="#contact">Request Sample Report</a>
-          </Button>
+          <div className="mt-8">
+            <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_30px_-6px_var(--primary)]">
+              <a href="/Remonixa_VAPT_Sample_Report.pdf" download>
+                <FileText className="mr-2 h-4 w-4" />
+                Download Sample Report
+              </a>
+            </Button>
+            <p className="mt-3 text-xs text-muted-foreground">
+              Instant download • No signup required
+            </p>
+          </div>
         </div>
 
         {/* Mock report card */}

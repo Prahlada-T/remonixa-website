@@ -60,12 +60,15 @@ export function Hero() {
               variant="outline"
               className="h-12 px-7 text-base glass border-primary/30 hover:border-primary/60 hover:bg-primary/10"
             >
-              <a href="#report">
+              <a href="/Remonixa_VAPT_Sample_Report.pdf" download>
                 <FileSearch className="mr-2 h-4 w-4" />
-                Request VAPT Report
+                Download Sample Report
               </a>
             </Button>
           </div>
+          <p className="mt-3 text-xs text-muted-foreground">
+            Instant download • No signup required
+          </p>
 
           {/* Trust badges */}
           <div className="mt-16">
