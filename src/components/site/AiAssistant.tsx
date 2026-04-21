@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { MessageCircle, X, Send, ShieldCheck, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -136,7 +136,7 @@ function generateReply(input: string): { content: string; quickReplies?: string[
 
 function renderContent(text: string) {
   // Minimal markdown: links [label](url) and **bold**
-  const parts: (string | JSX.Element)[] = [];
+  const parts: ReactNode[] = [];
   const regex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
   let lastIndex = 0;
   let match;
