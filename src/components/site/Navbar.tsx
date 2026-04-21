@@ -19,13 +19,13 @@ export function Navbar() {
         {/* Brand — wordmark only */}
         <a
           href="#top"
-          className="group inline-flex items-baseline gap-3"
+          className="group inline-flex items-center gap-2.5 leading-none transition-opacity duration-300 hover:opacity-90"
           aria-label="Remonixa Technology"
         >
-          <span className="font-bold tracking-tight text-2xl sm:text-3xl leading-none bg-gradient-to-r from-[#7dd3fc] via-[#60a5fa] to-[#3b82f6] bg-clip-text text-transparent transition-opacity duration-300 group-hover:opacity-90">
+          <span className="font-bold tracking-tight text-xl sm:text-2xl leading-none bg-gradient-to-r from-[#7dd3fc] via-[#60a5fa] to-[#3b82f6] bg-clip-text text-transparent">
             Remonixa
           </span>
-          <span className="text-[10px] sm:text-xs font-medium tracking-[0.28em] text-slate-400 leading-none">
+          <span className="font-medium text-xl sm:text-2xl leading-none tracking-[0.18em] text-slate-300/90">
             TECHNOLOGY
           </span>
         </a>
