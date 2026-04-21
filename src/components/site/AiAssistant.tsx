@@ -1,13 +1,19 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { MessageCircle, X, Send, ShieldCheck, Sparkles } from "lucide-react";
+import { MessageCircle, X, Send, ShieldCheck, Sparkles, Loader2 } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+const EMAILJS_SERVICE_ID = "service_d0ng3rj";
+const EMAILJS_PUBLIC_KEY = "tHxbSlXGKCFiE0EnK";
+const EMAILJS_ADMIN_TEMPLATE_ID = "template_dfhpwn7";
 
 type Msg = {
   id: string;
   role: "bot" | "user";
   content: string;
   quickReplies?: string[];
+  expertForm?: boolean;
 };
 
 const WELCOME: Msg = {
@@ -48,7 +54,6 @@ function generateReply(input: string): { content: string; quickReplies?: string[
     };
   }
 
-  // Web
   if (/(web|website|webapp)/.test(t)) {
     return {
       content:
@@ -57,7 +62,6 @@ function generateReply(input: string): { content: string; quickReplies?: string[
     };
   }
 
-  // API
   if (/(api|graphql|rest)/.test(t)) {
     return {
       content:
@@ -66,7 +70,6 @@ function generateReply(input: string): { content: string; quickReplies?: string[
     };
   }
 
-  // Network
   if (/(network|firewall|infrastructure|server)/.test(t)) {
     return {
       content:
@@ -75,7 +78,6 @@ function generateReply(input: string): { content: string; quickReplies?: string[
     };
   }
 
-  // Process
   if (/(process|how|step|methodology|work)/.test(t)) {
     return {
       content:
@@ -84,7 +86,6 @@ function generateReply(input: string): { content: string; quickReplies?: string[
     };
   }
 
-  // Compliance
   if (/(compliance|iso|gdpr|pci|hipaa|standard)/.test(t)) {
     return {
       content:
@@ -93,15 +94,6 @@ function generateReply(input: string): { content: string; quickReplies?: string[
     };
   }
 
-  // Expert / contact
-  if (/(expert|contact|consult|talk|human|team|call)/.test(t)) {
-    return {
-      content:
-        "Absolutely! Our team specializes in professional VAPT services and would love to help.\n\nCould you share your **name** and **email**? I'll arrange a quick consultation. Your information is safe and confidential.",
-    };
-  }
-
-  // Greeting
   if (/(hi|hello|hey|good (morning|evening|afternoon))/.test(t)) {
     return {
       content: "Hello! 👋 Glad you're here. How can I help you today?",
@@ -109,7 +101,6 @@ function generateReply(input: string): { content: string; quickReplies?: string[
     };
   }
 
-  // Thanks
   if (/(thank|thanks|appreciate)/.test(t)) {
     return {
       content: "You're very welcome! 😊 Is there anything else I can help you with?",
@@ -117,16 +108,6 @@ function generateReply(input: string): { content: string; quickReplies?: string[
     };
   }
 
-  // Email captured
-  if (/[\w.+-]+@[\w-]+\.[\w.-]+/.test(t)) {
-    return {
-      content:
-        "Perfect, thank you! ✅ Our team will reach out shortly. Meanwhile, feel free to ask any other security questions.",
-      quickReplies: ["Get VAPT Info", "Download Sample Report"],
-    };
-  }
-
-  // Fallback
   return {
     content:
       "Got it, I understand what you're looking for. Let me help you with that. Could you tell me a bit more — are you interested in our services, pricing, or speaking to an expert?",
@@ -135,7 +116,6 @@ function generateReply(input: string): { content: string; quickReplies?: string[
 }
 
 function renderContent(text: string) {
-  // Minimal markdown: links [label](url) and **bold**
   const parts: ReactNode[] = [];
   const regex = /\[([^\]]+)\]\(([^)]+)\)|\*\*([^*]+)\*\*/g;
   let lastIndex = 0;
@@ -167,19 +147,164 @@ function renderContent(text: string) {
   return parts;
 }
 
+const EXPERT_PROMPT =
+  "I'd be happy to connect you with our security expert. Could you please share your name and email?";
+
+const EXPERT_SUCCESS =
+  "Thank you for reaching out to Remonixa Technology.\n\nYour request has been successfully received and shared with our security team.\n\nOne of our experts will review your requirements and get in touch with you within 24 to 48 hours.\n\nIf your request is urgent, you can reply directly to our email for faster assistance.\n\nWe appreciate your interest in our services.";
+
+function ExpertForm({
+  onSubmit,
+  submitting,
+  submitted,
+}: {
+  onSubmit: (name: string, email: string) => void;
+  submitting: boolean;
+  submitted: boolean;
+}) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+
+  if (submitted) return null;
+
+  const handle = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (submitting) return;
+    const n = name.trim();
+    const em = email.trim();
+    if (!n) return setError("Please enter your name.");
+    if (!/^[\w.+-]+@[\w-]+\.[\w.-]+$/.test(em)) return setError("Please enter a valid email.");
+    setError("");
+    onSubmit(n, em);
+  };
+
+  return (
+    <form onSubmit={handle} className="mt-3 space-y-2">
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        placeholder="Your name"
+        maxLength={100}
+        disabled={submitting}
+        className="w-full bg-background/80 border border-border/60 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary/60 placeholder:text-muted-foreground disabled:opacity-60"
+      />
+      <input
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Your email"
+        maxLength={255}
+        disabled={submitting}
+        className="w-full bg-background/80 border border-border/60 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary/60 placeholder:text-muted-foreground disabled:opacity-60"
+      />
+      {error && <p className="text-xs text-destructive">{error}</p>}
+      <Button
+        type="submit"
+        disabled={submitting}
+        className="w-full h-9 bg-primary text-primary-foreground hover:bg-primary/90"
+      >
+        {submitting ? (
+          <>
+            <Loader2 className="h-4 w-4 mr-2 animate-spin" /> Sending…
+          </>
+        ) : (
+          "Connect with Expert"
+        )}
+      </Button>
+      <p className="text-[11px] text-muted-foreground text-center">
+        🔒 Your information is safe and confidential.
+      </p>
+    </form>
+  );
+}
+
 export function AiAssistant() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([WELCOME]);
   const [input, setInput] = useState("");
   const [typing, setTyping] = useState(false);
   const [leadPrompted, setLeadPrompted] = useState(false);
+  const [expertSubmitting, setExpertSubmitting] = useState(false);
+  const [expertSubmitted, setExpertSubmitted] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
-  }, [messages, typing, open]);
+  }, [messages, typing, open, expertSubmitting]);
 
   const userMsgCount = messages.filter((m) => m.role === "user").length;
+
+  const triggerExpertFlow = () => {
+    setMessages((m) => [
+      ...m,
+      { id: crypto.randomUUID(), role: "user", content: "Talk to Expert" },
+    ]);
+    setTyping(true);
+    setTimeout(() => {
+      setMessages((m) => [
+        ...m,
+        {
+          id: crypto.randomUUID(),
+          role: "bot",
+          content: EXPERT_PROMPT,
+          expertForm: true,
+        },
+      ]);
+      setTyping(false);
+    }, 600);
+  };
+
+  const submitExpert = async (name: string, email: string) => {
+    if (expertSubmitting || expertSubmitted) return;
+    setExpertSubmitting(true);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_ADMIN_TEMPLATE_ID,
+        {
+          name,
+          email,
+          company: "—",
+          website: "—",
+          message: "Lead from AI Security Assistant — user requested to talk to an expert.",
+          source: "Website AI Chatbot",
+          to_email: "remonixanotify@gmail.com",
+          reply_to: email,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
+      setExpertSubmitted(true);
+      setMessages((m) => [
+        ...m,
+        {
+          id: crypto.randomUUID(),
+          role: "user",
+          content: `${name} • ${email}`,
+        },
+        {
+          id: crypto.randomUUID(),
+          role: "bot",
+          content: EXPERT_SUCCESS,
+          quickReplies: ["Download Sample Report", "Pricing Details"],
+        },
+      ]);
+    } catch (err) {
+      console.error("Expert lead send failed:", err);
+      setMessages((m) => [
+        ...m,
+        {
+          id: crypto.randomUUID(),
+          role: "bot",
+          content:
+            "Sorry, we couldn't send your request right now. Please try again, or email us directly at remonixanotify@gmail.com.",
+        },
+      ]);
+    } finally {
+      setExpertSubmitting(false);
+    }
+  };
 
   const send = (text: string) => {
     const trimmed = text.trim();
@@ -200,7 +325,6 @@ export function AiAssistant() {
       setMessages((m) => [...m, botMsg]);
       setTyping(false);
 
-      // Soft lead capture after 2-3 messages
       if (!leadPrompted && userMsgCount + 1 >= 2 && !/expert|contact|consult|talk/i.test(trimmed)) {
         setTimeout(() => {
           setMessages((m) => [
@@ -209,8 +333,8 @@ export function AiAssistant() {
               id: crypto.randomUUID(),
               role: "bot",
               content:
-                "Would you like our team to assist you further? I can arrange a quick consultation. If yes, just share your **name** and **email** — your info stays safe and confidential. 🔒",
-              quickReplies: ["Yes, contact me", "Maybe later"],
+                "Would you like our team to assist you further? I can arrange a quick consultation.",
+              quickReplies: ["Talk to Expert", "Maybe later"],
             },
           ]);
           setLeadPrompted(true);
@@ -219,9 +343,24 @@ export function AiAssistant() {
     }, 600 + Math.random() * 400);
   };
 
+  const handleQuickReply = (q: string) => {
+    if (q === "Download Sample Report") {
+      const a = document.createElement("a");
+      a.href = "/Remonixa_VAPT_Sample_Report.pdf";
+      a.download = "Remonixa_VAPT_Sample_Report.pdf";
+      a.click();
+      send("Download Sample Report");
+      return;
+    }
+    if (q === "Talk to Expert" || q === "Yes, contact me") {
+      triggerExpertFlow();
+      return;
+    }
+    send(q);
+  };
+
   return (
     <>
-      {/* Floating button */}
       <button
         aria-label="Open AI Security Assistant"
         onClick={() => setOpen((o) => !o)}
@@ -233,7 +372,6 @@ export function AiAssistant() {
         {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
       </button>
 
-      {/* Chat panel */}
       <div
         className={cn(
           "fixed bottom-24 right-6 z-50 w-[calc(100vw-3rem)] sm:w-[400px] h-[560px] max-h-[calc(100vh-8rem)] rounded-2xl border border-primary/20 bg-background/95 backdrop-blur-xl shadow-2xl flex flex-col overflow-hidden transition-all duration-300 origin-bottom-right",
@@ -242,7 +380,6 @@ export function AiAssistant() {
             : "opacity-0 scale-95 pointer-events-none",
         )}
       >
-        {/* Header */}
         <div className="flex items-center gap-3 px-4 py-3 border-b border-border/50 bg-gradient-to-r from-primary/10 to-transparent">
           <div className="relative h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center">
             <ShieldCheck className="h-5 w-5 text-primary" />
@@ -257,7 +394,6 @@ export function AiAssistant() {
           </div>
         </div>
 
-        {/* Messages */}
         <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
           {messages.map((m) => (
             <div key={m.id} className={cn("flex", m.role === "user" ? "justify-end" : "justify-start")}>
@@ -270,24 +406,19 @@ export function AiAssistant() {
                 )}
               >
                 {renderContent(m.content)}
+                {m.role === "bot" && m.expertForm && (
+                  <ExpertForm
+                    onSubmit={submitExpert}
+                    submitting={expertSubmitting}
+                    submitted={expertSubmitted}
+                  />
+                )}
                 {m.role === "bot" && m.quickReplies && (
                   <div className="mt-2.5 flex flex-wrap gap-1.5">
                     {m.quickReplies.map((q) => (
                       <button
                         key={q}
-                        onClick={() => {
-                          if (q === "Download Sample Report") {
-                            const a = document.createElement("a");
-                            a.href = "/Remonixa_VAPT_Sample_Report.pdf";
-                            a.download = "Remonixa_VAPT_Sample_Report.pdf";
-                            a.click();
-                            send("Download Sample Report");
-                          } else if (q === "Talk to Expert" || q === "Yes, contact me") {
-                            send(q);
-                          } else {
-                            send(q);
-                          }
-                        }}
+                        onClick={() => handleQuickReply(q)}
                         className="text-xs px-2.5 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
                       >
                         {q}
@@ -312,7 +443,6 @@ export function AiAssistant() {
           )}
         </div>
 
-        {/* Input */}
         <form
           onSubmit={(e) => {
             e.preventDefault();
