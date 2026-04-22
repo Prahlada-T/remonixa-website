@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoMark from "@/assets/remonixa-logo-hero.png";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -14,19 +15,31 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#020617]/80 border-b border-white/5">
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#070314]/80 border-b border-white/5">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6">
-        {/* Brand — wordmark only */}
+        {/* Brand — logo mark + wordmark */}
         <a
           href="#top"
-          className="group inline-flex items-baseline gap-2 leading-none transition-opacity duration-300 hover:opacity-90"
+          className="group inline-flex items-center gap-3 leading-none transition-opacity duration-300 hover:opacity-90"
           aria-label="Remonixa Technology"
         >
-          <span className="font-bold tracking-tight text-lg sm:text-xl leading-none bg-gradient-to-r from-[#7dd3fc] via-[#60a5fa] to-[#3b82f6] bg-clip-text text-transparent">
-            Remonixa
+          <span className="relative inline-flex h-10 w-10 items-center justify-center">
+            <span className="absolute inset-0 rounded-full bg-[oklch(0.6_0.24_295/0.35)] blur-md" />
+            <img
+              src={logoMark}
+              alt=""
+              width={40}
+              height={40}
+              className="relative h-10 w-10 object-contain drop-shadow-[0_0_10px_oklch(0.65_0.24_295/0.6)]"
+            />
           </span>
-          <span className="font-semibold tracking-tight text-lg sm:text-xl leading-none text-white">
-            Technology
+          <span className="inline-flex items-baseline gap-1.5">
+            <span className="font-bold tracking-tight text-lg sm:text-xl leading-none bg-gradient-to-r from-[oklch(0.85_0.18_295)] via-[oklch(0.75_0.22_285)] to-[oklch(0.7_0.22_270)] bg-clip-text text-transparent">
+              Remonixa
+            </span>
+            <span className="font-semibold tracking-tight text-lg sm:text-xl leading-none text-white">
+              Technology
+            </span>
           </span>
         </a>
 
