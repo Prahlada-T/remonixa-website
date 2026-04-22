@@ -36,7 +36,7 @@ export function Navbar() {
             <a
               key={l.href}
               href={l.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              className="nav-link text-sm text-muted-foreground hover:text-foreground"
             >
               {l.label}
             </a>
@@ -47,7 +47,7 @@ export function Navbar() {
           <Button
             asChild
             size="sm"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_24px_-4px_var(--primary)]"
+            className="btn-gradient-glow text-white hover:text-white border-0"
           >
             <a href="#contact">Get Started</a>
           </Button>
