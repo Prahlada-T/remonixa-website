@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex items-center pt-24 pb-12 sm:pt-28 sm:pb-16 lg:min-h-screen lg:pt-28 lg:pb-20 overflow-hidden"
+      className="relative flex items-center pt-20 pb-10 sm:pt-24 sm:pb-14 lg:min-h-screen lg:pt-28 lg:pb-20 overflow-hidden"
     >
       {/* Background layers */}
       <div className="absolute inset-0 -z-10">
@@ -31,19 +31,20 @@ export function Hero() {
         <span className="particle" style={{ left: "70%", top: "85%", width: 3, height: 3, animationDelay: "5s" }} />
       </div>
 
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 w-full">
-        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-8 items-center">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 w-full">
+        <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:gap-8 items-center">
           {/* LEFT — copy */}
-          <div className="fade-up text-center lg:text-left order-1">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-medium text-[oklch(0.85_0.18_295)] mb-5 border border-[oklch(0.6_0.24_295/0.35)]">
-              <span className="relative flex h-2 w-2">
+          <div className="fade-up text-left order-1">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-4 sm:py-1.5 rounded-full glass text-[10px] sm:text-xs font-medium text-[oklch(0.85_0.18_295)] mb-3 sm:mb-5 border border-[oklch(0.6_0.24_295/0.35)]">
+              <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[oklch(0.7_0.24_295)] opacity-75 animate-ping" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[oklch(0.7_0.24_295)]" />
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-[oklch(0.7_0.24_295)]" />
               </span>
-              VAPT Specialists · Available 24/7
+              <span className="hidden sm:inline">VAPT Specialists · Available 24/7</span>
+              <span className="sm:hidden">VAPT · 24/7</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-[4.25rem] font-bold tracking-tighter leading-[1.05] lg:leading-[1.02]">
+            <h1 className="text-[1.65rem] xs:text-3xl sm:text-5xl lg:text-[4.25rem] font-bold tracking-tighter leading-[1.05] lg:leading-[1.02]">
               <span className="text-white">Secure Your </span>
               <span className="bg-gradient-to-r from-[oklch(0.85_0.2_295)] via-[oklch(0.78_0.22_285)] to-[oklch(0.72_0.22_270)] bg-clip-text text-transparent">
                 Business
@@ -56,43 +57,45 @@ export function Hero() {
               <span className="text-white"> Do</span>
             </h1>
 
-            <p className="mt-5 sm:mt-6 text-base sm:text-lg text-muted-foreground/90 max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Advanced VAPT services to identify, exploit, and fix security
-              vulnerabilities across web applications, networks, and APIs.
+            <p className="mt-3 sm:mt-6 text-xs sm:text-base lg:text-lg text-muted-foreground/90 max-w-xl leading-relaxed">
+              <span className="hidden sm:inline">Advanced VAPT services to identify, exploit, and fix security vulnerabilities across web applications, networks, and APIs.</span>
+              <span className="sm:hidden">Identify, exploit & fix vulnerabilities across apps, networks & APIs.</span>
             </p>
 
-            <div className="mt-7 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4">
+            <div className="mt-4 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
               <Button
                 asChild
                 size="lg"
-                className="btn-gradient-glow text-white hover:text-white group h-11 sm:h-12 px-6 sm:px-7 text-sm sm:text-base border-0"
+                className="btn-gradient-glow text-white hover:text-white group h-9 sm:h-12 px-3 sm:px-7 text-xs sm:text-base border-0"
               >
                 <a href="#contact">
-                  Get Free Consultation
-                  <ArrowRight className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  <span className="hidden sm:inline">Get Free Consultation</span>
+                  <span className="sm:hidden">Get Consultation</span>
+                  <ArrowRight className="ml-1 h-3 w-3 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
                 </a>
               </Button>
               <Button
                 asChild
                 size="lg"
                 variant="outline"
-                className="btn-outline-glow h-11 sm:h-12 px-6 sm:px-7 text-sm sm:text-base glass border-[oklch(0.6_0.24_295/0.4)] hover:border-[oklch(0.7_0.24_295/0.7)] hover:bg-[oklch(0.6_0.24_295/0.1)]"
+                className="btn-outline-glow h-9 sm:h-12 px-3 sm:px-7 text-xs sm:text-base glass border-[oklch(0.6_0.24_295/0.4)] hover:border-[oklch(0.7_0.24_295/0.7)] hover:bg-[oklch(0.6_0.24_295/0.1)]"
               >
                 <a href="/Remonixa_VAPT_Sample_Report.pdf" download>
-                  <FileSearch className="mr-2 h-4 w-4" />
-                  Download Sample Report
+                  <FileSearch className="mr-1 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="hidden sm:inline">Download Sample Report</span>
+                  <span className="sm:hidden">Sample Report</span>
                 </a>
               </Button>
             </div>
-            <p className="mt-3 text-xs text-muted-foreground">
+            <p className="mt-2 sm:mt-3 text-[10px] sm:text-xs text-muted-foreground">
               Instant download • No signup required
             </p>
           </div>
 
           {/* RIGHT — 3D logo art */}
-          <div className="relative flex items-center justify-center fade-up order-2 mt-2 lg:mt-0" style={{ animationDelay: "0.15s" }}>
+          <div className="relative flex items-center justify-center fade-up order-2" style={{ animationDelay: "0.15s" }}>
             {/* Concentric tech rings under logo */}
-            <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 w-[260px] h-[80px] sm:w-[380px] sm:h-[110px] lg:w-[480px] lg:h-[140px] pointer-events-none">
+            <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 w-[120px] h-[40px] sm:w-[260px] sm:h-[80px] md:w-[380px] md:h-[110px] lg:w-[480px] lg:h-[140px] pointer-events-none">
               <div className="absolute inset-0 rounded-[50%] border border-[oklch(0.7_0.22_285/0.25)]" />
               <div className="absolute inset-x-[6%] inset-y-[8%] rounded-[50%] border border-[oklch(0.7_0.22_285/0.18)]" />
               <div className="absolute inset-x-[12%] inset-y-[16%] rounded-[50%] border border-[oklch(0.7_0.22_285/0.12)]" />
@@ -100,9 +103,9 @@ export function Hero() {
             </div>
 
             {/* Breathing glow halo */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] h-[260px] sm:w-[360px] sm:h-[360px] lg:w-[440px] lg:h-[440px] rounded-full bg-[oklch(0.6_0.26_295/0.45)] breathing-glow" />
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[140px] h-[140px] sm:w-[260px] sm:h-[260px] md:w-[360px] md:h-[360px] lg:w-[440px] lg:h-[440px] rounded-full bg-[oklch(0.6_0.26_295/0.45)] breathing-glow" />
             <div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] lg:w-[280px] lg:h-[280px] rounded-full bg-[oklch(0.75_0.22_285/0.35)] breathing-glow"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80px] h-[80px] sm:w-[160px] sm:h-[160px] md:w-[220px] md:h-[220px] lg:w-[280px] lg:h-[280px] rounded-full bg-[oklch(0.75_0.22_285/0.35)] breathing-glow"
               style={{ animationDelay: "1.5s" }}
             />
 
@@ -113,7 +116,7 @@ export function Hero() {
               width={520}
               height={520}
               loading="eager"
-              className="relative w-[220px] sm:w-[340px] md:w-[400px] lg:w-[460px] xl:w-[480px] max-w-full h-auto float-slow drop-shadow-[0_20px_40px_oklch(0.5_0.24_295/0.55)] lg:drop-shadow-[0_30px_60px_oklch(0.5_0.24_295/0.55)]"
+              className="relative w-[130px] xs:w-[150px] sm:w-[260px] md:w-[360px] lg:w-[460px] xl:w-[480px] max-w-full h-auto float-slow drop-shadow-[0_12px_24px_oklch(0.5_0.24_295/0.55)] lg:drop-shadow-[0_30px_60px_oklch(0.5_0.24_295/0.55)]"
             />
           </div>
         </div>
