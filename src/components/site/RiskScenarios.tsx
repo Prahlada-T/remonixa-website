@@ -38,7 +38,7 @@ const sevColor: Record<string, string> = {
 
 export function RiskScenarios() {
   return (
-    <section className="relative py-28">
+    <section className="relative py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6">
         <div className="max-w-2xl">
           <p className="text-sm font-mono text-primary uppercase tracking-widest mb-3">/ real risks</p>

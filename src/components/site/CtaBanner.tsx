@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 export function CtaBanner() {
   return (
-    <section className="relative py-24">
+    <section className="relative py-14 sm:py-18 lg:py-20">
       <div className="mx-auto max-w-7xl px-6">
         <div className="relative overflow-hidden rounded-3xl glass-card p-10 sm:p-16 text-center">
           <div className="absolute inset-0 grid-bg opacity-50" />

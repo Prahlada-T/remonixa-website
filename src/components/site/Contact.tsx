@@ -98,7 +98,7 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-28">
+    <section id="contact" className="relative py-16 sm:py-20 lg:py-24">
       <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-5 gap-12">
         <div className="lg:col-span-2">
           <p className="text-sm font-mono text-primary uppercase tracking-widest mb-3">/ contact</p>

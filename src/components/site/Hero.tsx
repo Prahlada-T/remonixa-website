@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden"
+      className="relative flex items-center pt-24 pb-12 sm:pt-28 sm:pb-16 lg:min-h-screen lg:pt-28 lg:pb-20 overflow-hidden"
     >
       {/* Background layers */}
       <div className="absolute inset-0 -z-10">
@@ -18,8 +18,8 @@ export function Hero() {
       </div>
 
       {/* Ambient glow orbs */}
-      <div className="absolute top-1/3 right-[8%] w-[560px] h-[560px] rounded-full bg-[oklch(0.6_0.26_295/0.35)] -z-10 breathing-glow" />
-      <div className="absolute bottom-1/4 left-[5%] w-[420px] h-[420px] rounded-full bg-[oklch(0.55_0.22_270/0.25)] blur-[140px] -z-10 float-slow" />
+      <div className="absolute top-1/3 right-[8%] w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] lg:w-[560px] lg:h-[560px] rounded-full bg-[oklch(0.6_0.26_295/0.35)] -z-10 breathing-glow" />
+      <div className="absolute bottom-1/4 left-[5%] w-[260px] h-[260px] sm:w-[420px] sm:h-[420px] rounded-full bg-[oklch(0.55_0.22_270/0.25)] blur-[140px] -z-10 float-slow" />
 
       {/* Floating particles */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
@@ -31,11 +31,11 @@ export function Hero() {
         <span className="particle" style={{ left: "70%", top: "85%", width: 3, height: 3, animationDelay: "5s" }} />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 w-full">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-8 items-center">
           {/* LEFT — copy */}
-          <div className="fade-up text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-medium text-[oklch(0.85_0.18_295)] mb-6 border border-[oklch(0.6_0.24_295/0.35)]">
+          <div className="fade-up text-center lg:text-left order-1">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass text-xs font-medium text-[oklch(0.85_0.18_295)] mb-5 border border-[oklch(0.6_0.24_295/0.35)]">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-[oklch(0.7_0.24_295)] opacity-75 animate-ping" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[oklch(0.7_0.24_295)]" />
@@ -43,7 +43,7 @@ export function Hero() {
               VAPT Specialists · Available 24/7
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-[4.25rem] font-bold tracking-tighter leading-[1.02]">
+            <h1 className="text-4xl sm:text-5xl lg:text-[4.25rem] font-bold tracking-tighter leading-[1.05] lg:leading-[1.02]">
               <span className="text-white">Secure Your </span>
               <span className="bg-gradient-to-r from-[oklch(0.85_0.2_295)] via-[oklch(0.78_0.22_285)] to-[oklch(0.72_0.22_270)] bg-clip-text text-transparent">
                 Business
@@ -56,16 +56,16 @@ export function Hero() {
               <span className="text-white"> Do</span>
             </h1>
 
-            <p className="mt-7 text-lg text-muted-foreground/90 max-w-xl leading-relaxed">
+            <p className="mt-5 sm:mt-6 text-base sm:text-lg text-muted-foreground/90 max-w-xl mx-auto lg:mx-0 leading-relaxed">
               Advanced VAPT services to identify, exploit, and fix security
               vulnerabilities across web applications, networks, and APIs.
             </p>
 
-            <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="mt-7 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4">
               <Button
                 asChild
                 size="lg"
-                className="btn-gradient-glow text-white hover:text-white group h-12 px-7 text-base border-0"
+                className="btn-gradient-glow text-white hover:text-white group h-11 sm:h-12 px-6 sm:px-7 text-sm sm:text-base border-0"
               >
                 <a href="#contact">
                   Get Free Consultation
@@ -76,7 +76,7 @@ export function Hero() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="btn-outline-glow h-12 px-7 text-base glass border-[oklch(0.6_0.24_295/0.4)] hover:border-[oklch(0.7_0.24_295/0.7)] hover:bg-[oklch(0.6_0.24_295/0.1)]"
+                className="btn-outline-glow h-11 sm:h-12 px-6 sm:px-7 text-sm sm:text-base glass border-[oklch(0.6_0.24_295/0.4)] hover:border-[oklch(0.7_0.24_295/0.7)] hover:bg-[oklch(0.6_0.24_295/0.1)]"
               >
                 <a href="/Remonixa_VAPT_Sample_Report.pdf" download>
                   <FileSearch className="mr-2 h-4 w-4" />
@@ -90,19 +90,19 @@ export function Hero() {
           </div>
 
           {/* RIGHT — 3D logo art */}
-          <div className="relative flex items-center justify-center fade-up" style={{ animationDelay: "0.15s" }}>
+          <div className="relative flex items-center justify-center fade-up order-2 mt-2 lg:mt-0" style={{ animationDelay: "0.15s" }}>
             {/* Concentric tech rings under logo */}
-            <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 w-[480px] h-[140px] pointer-events-none">
+            <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 w-[260px] h-[80px] sm:w-[380px] sm:h-[110px] lg:w-[480px] lg:h-[140px] pointer-events-none">
               <div className="absolute inset-0 rounded-[50%] border border-[oklch(0.7_0.22_285/0.25)]" />
-              <div className="absolute inset-x-8 inset-y-3 rounded-[50%] border border-[oklch(0.7_0.22_285/0.18)]" />
-              <div className="absolute inset-x-16 inset-y-6 rounded-[50%] border border-[oklch(0.7_0.22_285/0.12)]" />
-              <div className="absolute inset-x-24 inset-y-9 rounded-[50%] border border-[oklch(0.7_0.22_285/0.08)]" />
+              <div className="absolute inset-x-[6%] inset-y-[8%] rounded-[50%] border border-[oklch(0.7_0.22_285/0.18)]" />
+              <div className="absolute inset-x-[12%] inset-y-[16%] rounded-[50%] border border-[oklch(0.7_0.22_285/0.12)]" />
+              <div className="absolute inset-x-[18%] inset-y-[24%] rounded-[50%] border border-[oklch(0.7_0.22_285/0.08)]" />
             </div>
 
             {/* Breathing glow halo */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[440px] h-[440px] rounded-full bg-[oklch(0.6_0.26_295/0.45)] breathing-glow" />
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[260px] h-[260px] sm:w-[360px] sm:h-[360px] lg:w-[440px] lg:h-[440px] rounded-full bg-[oklch(0.6_0.26_295/0.45)] breathing-glow" />
             <div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] h-[280px] rounded-full bg-[oklch(0.75_0.22_285/0.35)] breathing-glow"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] sm:w-[220px] sm:h-[220px] lg:w-[280px] lg:h-[280px] rounded-full bg-[oklch(0.75_0.22_285/0.35)] breathing-glow"
               style={{ animationDelay: "1.5s" }}
             />
 
@@ -112,7 +112,8 @@ export function Hero() {
               alt="Remonixa Technology — secure planet shield logo"
               width={520}
               height={520}
-              className="relative w-[320px] sm:w-[400px] lg:w-[480px] h-auto float-slow drop-shadow-[0_30px_60px_oklch(0.5_0.24_295/0.55)]"
+              loading="eager"
+              className="relative w-[220px] sm:w-[340px] md:w-[400px] lg:w-[460px] xl:w-[480px] max-w-full h-auto float-slow drop-shadow-[0_20px_40px_oklch(0.5_0.24_295/0.55)] lg:drop-shadow-[0_30px_60px_oklch(0.5_0.24_295/0.55)]"
             />
           </div>
         </div>
