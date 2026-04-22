@@ -11,7 +11,7 @@ const tools = [
 
 export function Tools() {
   return (
-    <section className="relative py-24 bg-surface/30">
+    <section className="relative py-14 sm:py-18 lg:py-20 bg-surface/30">
       <div className="mx-auto max-w-7xl px-6">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <p className="text-sm font-mono text-primary uppercase tracking-widest mb-3">/ arsenal</p>
