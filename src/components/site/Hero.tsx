@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex items-center pt-20 pb-10 sm:pt-24 sm:pb-14 lg:min-h-screen lg:pt-28 lg:pb-20 overflow-hidden"
+      className="relative flex items-center pt-20 pb-12 sm:pt-24 sm:pb-16 lg:min-h-[88vh] lg:pt-28 lg:pb-20 overflow-hidden"
     >
       {/* Background layers */}
       <div className="absolute inset-0 -z-10">
@@ -31,8 +31,8 @@ export function Hero() {
         <span className="particle" style={{ left: "70%", top: "85%", width: 3, height: 3, animationDelay: "5s" }} />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 w-full">
-        <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:gap-8 items-center">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
+        <div className="grid grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center">
           {/* LEFT — copy */}
           <div className="fade-up text-left order-1">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-4 sm:py-1.5 rounded-full glass text-[10px] sm:text-xs font-medium text-[oklch(0.85_0.18_295)] mb-3 sm:mb-5 border border-[oklch(0.6_0.24_295/0.35)]">
@@ -44,7 +44,7 @@ export function Hero() {
               <span className="sm:hidden">VAPT · 24/7</span>
             </div>
 
-            <h1 className="text-[1.65rem] xs:text-3xl sm:text-5xl lg:text-[4.25rem] font-bold tracking-tighter leading-[1.05] lg:leading-[1.02]">
+            <h1 className="text-[1.65rem] xs:text-3xl sm:text-5xl lg:text-[4.5rem] xl:text-[5rem] font-bold tracking-tighter leading-[1.05] lg:leading-[1.02]">
               <span className="text-white">Secure Your </span>
               <span className="bg-gradient-to-r from-[oklch(0.85_0.2_295)] via-[oklch(0.78_0.22_285)] to-[oklch(0.72_0.22_270)] bg-clip-text text-transparent">
                 Business
@@ -93,19 +93,19 @@ export function Hero() {
           </div>
 
           {/* RIGHT — 3D logo art */}
-          <div className="relative flex items-center justify-center fade-up order-2" style={{ animationDelay: "0.15s" }}>
+          <div className="relative flex items-center justify-center fade-up order-2 min-h-[200px] sm:min-h-[340px] md:min-h-[440px] lg:min-h-[560px]" style={{ animationDelay: "0.15s" }}>
             {/* Concentric tech rings under logo */}
-            <div className="absolute bottom-[8%] left-1/2 -translate-x-1/2 w-[120px] h-[40px] sm:w-[260px] sm:h-[80px] md:w-[380px] md:h-[110px] lg:w-[480px] lg:h-[140px] pointer-events-none">
-              <div className="absolute inset-0 rounded-[50%] border border-[oklch(0.7_0.22_285/0.25)]" />
-              <div className="absolute inset-x-[6%] inset-y-[8%] rounded-[50%] border border-[oklch(0.7_0.22_285/0.18)]" />
-              <div className="absolute inset-x-[12%] inset-y-[16%] rounded-[50%] border border-[oklch(0.7_0.22_285/0.12)]" />
-              <div className="absolute inset-x-[18%] inset-y-[24%] rounded-[50%] border border-[oklch(0.7_0.22_285/0.08)]" />
+            <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[140px] h-[44px] sm:w-[300px] sm:h-[90px] md:w-[420px] md:h-[120px] lg:w-[540px] lg:h-[160px] pointer-events-none">
+              <div className="absolute inset-0 rounded-[50%] border border-[oklch(0.7_0.22_285/0.3)]" />
+              <div className="absolute inset-x-[6%] inset-y-[8%] rounded-[50%] border border-[oklch(0.7_0.22_285/0.22)]" />
+              <div className="absolute inset-x-[12%] inset-y-[16%] rounded-[50%] border border-[oklch(0.7_0.22_285/0.15)]" />
+              <div className="absolute inset-x-[18%] inset-y-[24%] rounded-[50%] border border-[oklch(0.7_0.22_285/0.1)]" />
             </div>
 
             {/* Breathing glow halo */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[140px] h-[140px] sm:w-[260px] sm:h-[260px] md:w-[360px] md:h-[360px] lg:w-[440px] lg:h-[440px] rounded-full bg-[oklch(0.6_0.26_295/0.45)] breathing-glow" />
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[520px] lg:h-[520px] rounded-full bg-[oklch(0.6_0.26_295/0.45)] breathing-glow" />
             <div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[80px] h-[80px] sm:w-[160px] sm:h-[160px] md:w-[220px] md:h-[220px] lg:w-[280px] lg:h-[280px] rounded-full bg-[oklch(0.75_0.22_285/0.35)] breathing-glow"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90px] h-[90px] sm:w-[180px] sm:h-[180px] md:w-[240px] md:h-[240px] lg:w-[320px] lg:h-[320px] rounded-full bg-[oklch(0.75_0.22_285/0.35)] breathing-glow"
               style={{ animationDelay: "1.5s" }}
             />
 
@@ -113,10 +113,10 @@ export function Hero() {
             <img
               src={heroLogo}
               alt="Remonixa Technology — secure planet shield logo"
-              width={520}
-              height={520}
+              width={600}
+              height={600}
               loading="eager"
-              className="relative w-[130px] xs:w-[150px] sm:w-[260px] md:w-[360px] lg:w-[460px] xl:w-[480px] max-w-full h-auto float-slow drop-shadow-[0_12px_24px_oklch(0.5_0.24_295/0.55)] lg:drop-shadow-[0_30px_60px_oklch(0.5_0.24_295/0.55)]"
+              className="relative w-[150px] xs:w-[170px] sm:w-[300px] md:w-[400px] lg:w-[520px] xl:w-[560px] max-w-full h-auto float-slow drop-shadow-[0_12px_24px_oklch(0.5_0.24_295/0.55)] lg:drop-shadow-[0_30px_60px_oklch(0.5_0.24_295/0.55)]"
             />
           </div>
         </div>
