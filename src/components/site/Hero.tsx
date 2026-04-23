@@ -1,4 +1,4 @@
-import { ArrowRight, FileSearch } from "lucide-react";
+import { ArrowRight, FileSearch, ShieldCheck, Lock, Globe, ShieldAlert } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroLogo from "@/assets/remonixa-logo-hero.png";
 
@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex items-center pt-20 pb-12 sm:pt-24 sm:pb-16 lg:min-h-[88vh] lg:pt-28 lg:pb-20 overflow-hidden"
+      className="relative flex flex-col justify-center pt-20 pb-6 sm:pt-24 sm:pb-8 lg:pt-24 lg:pb-10 overflow-hidden"
     >
       {/* Background layers */}
       <div className="absolute inset-0 -z-10">
@@ -18,8 +18,8 @@ export function Hero() {
       </div>
 
       {/* Ambient glow orbs */}
-      <div className="absolute top-1/3 right-[8%] w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] lg:w-[560px] lg:h-[560px] rounded-full bg-[oklch(0.6_0.26_295/0.35)] -z-10 breathing-glow" />
-      <div className="absolute bottom-1/4 left-[5%] w-[260px] h-[260px] sm:w-[420px] sm:h-[420px] rounded-full bg-[oklch(0.55_0.22_270/0.25)] blur-[140px] -z-10 float-slow" />
+      <div className="absolute top-1/3 right-[8%] w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] lg:w-[520px] lg:h-[520px] rounded-full bg-[oklch(0.6_0.26_295/0.32)] -z-10 breathing-glow" />
+      <div className="absolute bottom-1/4 left-[5%] w-[260px] h-[260px] sm:w-[380px] sm:h-[380px] rounded-full bg-[oklch(0.55_0.22_270/0.22)] blur-[140px] -z-10 float-slow" />
 
       {/* Floating particles */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
@@ -32,7 +32,7 @@ export function Hero() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid grid-cols-2 gap-4 sm:gap-8 lg:gap-12 items-center">
+        <div className="grid grid-cols-2 gap-4 sm:gap-8 lg:gap-10 items-center">
           {/* LEFT — copy */}
           <div className="fade-up text-left order-1">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 sm:px-4 sm:py-1.5 rounded-full glass text-[10px] sm:text-xs font-medium text-[oklch(0.85_0.18_295)] mb-3 sm:mb-5 border border-[oklch(0.6_0.24_295/0.35)]">
@@ -44,7 +44,7 @@ export function Hero() {
               <span className="sm:hidden">VAPT · 24/7</span>
             </div>
 
-            <h1 className="text-[1.65rem] xs:text-3xl sm:text-5xl lg:text-[4.5rem] xl:text-[5rem] font-bold tracking-tighter leading-[1.05] lg:leading-[1.02]">
+            <h1 className="text-[1.65rem] xs:text-3xl sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] font-bold tracking-tighter leading-[1.05] lg:leading-[1.05]">
               <span className="text-white">Secure Your </span>
               <span className="bg-gradient-to-r from-[oklch(0.85_0.2_295)] via-[oklch(0.78_0.22_285)] to-[oklch(0.72_0.22_270)] bg-clip-text text-transparent">
                 Business
@@ -52,17 +52,16 @@ export function Hero() {
               <br />
               <span className="text-white">Before </span>
               <span className="bg-gradient-to-r from-[oklch(0.78_0.2_270)] via-[oklch(0.74_0.24_285)] to-[oklch(0.82_0.2_295)] bg-clip-text text-transparent">
-                Hackers
+                Hackers Do
               </span>
-              <span className="text-white"> Do</span>
             </h1>
 
-            <p className="mt-3 sm:mt-6 text-xs sm:text-base lg:text-lg text-muted-foreground/90 max-w-xl leading-relaxed">
+            <p className="mt-3 sm:mt-5 text-xs sm:text-base lg:text-base text-muted-foreground/90 max-w-xl leading-relaxed">
               <span className="hidden sm:inline">Advanced VAPT services to identify, exploit, and fix security vulnerabilities across web applications, networks, and APIs.</span>
               <span className="sm:hidden">Identify, exploit & fix vulnerabilities across apps, networks & APIs.</span>
             </p>
 
-            <div className="mt-4 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
+            <div className="mt-4 sm:mt-7 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
               <Button
                 asChild
                 size="lg"
@@ -93,9 +92,9 @@ export function Hero() {
           </div>
 
           {/* RIGHT — 3D logo art */}
-          <div className="relative flex items-center justify-center fade-up order-2 min-h-[200px] sm:min-h-[340px] md:min-h-[440px] lg:min-h-[560px]" style={{ animationDelay: "0.15s" }}>
+          <div className="relative flex items-center justify-center fade-up order-2 min-h-[200px] sm:min-h-[320px] md:min-h-[400px] lg:min-h-[480px]" style={{ animationDelay: "0.15s" }}>
             {/* Concentric tech rings under logo */}
-            <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[140px] h-[44px] sm:w-[300px] sm:h-[90px] md:w-[420px] md:h-[120px] lg:w-[540px] lg:h-[160px] pointer-events-none">
+            <div className="absolute bottom-[10%] left-1/2 -translate-x-1/2 w-[140px] h-[44px] sm:w-[280px] sm:h-[84px] md:w-[380px] md:h-[110px] lg:w-[460px] lg:h-[140px] pointer-events-none">
               <div className="absolute inset-0 rounded-[50%] border border-[oklch(0.7_0.22_285/0.3)]" />
               <div className="absolute inset-x-[6%] inset-y-[8%] rounded-[50%] border border-[oklch(0.7_0.22_285/0.22)]" />
               <div className="absolute inset-x-[12%] inset-y-[16%] rounded-[50%] border border-[oklch(0.7_0.22_285/0.15)]" />
@@ -103,9 +102,9 @@ export function Hero() {
             </div>
 
             {/* Breathing glow halo */}
-            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] sm:w-[300px] sm:h-[300px] md:w-[400px] md:h-[400px] lg:w-[520px] lg:h-[520px] rounded-full bg-[oklch(0.6_0.26_295/0.45)] breathing-glow" />
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[160px] h-[160px] sm:w-[280px] sm:h-[280px] md:w-[360px] md:h-[360px] lg:w-[460px] lg:h-[460px] rounded-full bg-[oklch(0.6_0.26_295/0.45)] breathing-glow" />
             <div
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90px] h-[90px] sm:w-[180px] sm:h-[180px] md:w-[240px] md:h-[240px] lg:w-[320px] lg:h-[320px] rounded-full bg-[oklch(0.75_0.22_285/0.35)] breathing-glow"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90px] h-[90px] sm:w-[170px] sm:h-[170px] md:w-[220px] md:h-[220px] lg:w-[280px] lg:h-[280px] rounded-full bg-[oklch(0.75_0.22_285/0.35)] breathing-glow"
               style={{ animationDelay: "1.5s" }}
             />
 
@@ -116,8 +115,28 @@ export function Hero() {
               width={600}
               height={600}
               loading="eager"
-              className="relative w-[150px] xs:w-[170px] sm:w-[300px] md:w-[400px] lg:w-[520px] xl:w-[560px] max-w-full h-auto float-slow drop-shadow-[0_12px_24px_oklch(0.5_0.24_295/0.55)] lg:drop-shadow-[0_30px_60px_oklch(0.5_0.24_295/0.55)]"
+              className="relative w-[150px] xs:w-[170px] sm:w-[280px] md:w-[360px] lg:w-[440px] xl:w-[480px] max-w-full h-auto float-slow drop-shadow-[0_12px_24px_oklch(0.5_0.24_295/0.55)] lg:drop-shadow-[0_30px_60px_oklch(0.5_0.24_295/0.55)]"
             />
+          </div>
+        </div>
+
+        {/* Trust strip — Aligned with industry standards */}
+        <div className="mt-8 sm:mt-10 lg:mt-12 pt-6 sm:pt-8 border-t border-[oklch(0.6_0.24_295/0.18)]">
+          <p className="text-center text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-muted-foreground/80 mb-4 sm:mb-5">
+            Aligned with industry standards
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 sm:gap-x-12">
+            {[
+              { icon: ShieldCheck, label: "OWASP Top 10" },
+              { icon: Lock, label: "ISO 27001 Ready" },
+              { icon: Globe, label: "GDPR Ready" },
+              { icon: ShieldAlert, label: "PCI-DSS Aware" },
+            ].map((t) => (
+              <div key={t.label} className="flex items-center gap-2 text-muted-foreground">
+                <t.icon className="h-4 w-4 sm:h-5 sm:w-5 text-[oklch(0.78_0.2_295)]" />
+                <span className="text-xs sm:text-sm font-medium">{t.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
