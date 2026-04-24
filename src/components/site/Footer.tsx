@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ShieldCheck } from "lucide-react";
+import { ShieldCheck, Linkedin, Twitter, Github, Instagram, Youtube } from "lucide-react";
 import logoMark from "@/assets/remonixa-logo-hero.png";
 
 export function Footer() {
@@ -42,6 +42,28 @@ export function Footer() {
             <ShieldCheck className="h-3.5 w-3.5 text-[oklch(0.75_0.22_285)]" />
             OWASP • ISO 27001 • GDPR aligned
           </div>
+        </div>
+
+        {/* Social row */}
+        <div className="mt-8 flex justify-center gap-3">
+          {[
+            { Icon: Linkedin, href: "https://www.linkedin.com/company/remonixa-technology", label: "LinkedIn" },
+            { Icon: Twitter, href: "https://twitter.com/RemonixaTech", label: "Twitter" },
+            { Icon: Github, href: "https://github.com/remonixa", label: "GitHub" },
+            { Icon: Instagram, href: "https://www.instagram.com/remonixa.technology", label: "Instagram" },
+            { Icon: Youtube, href: "https://www.youtube.com/@RemonixaTechnology", label: "YouTube" },
+          ].map(({ Icon, href, label }) => (
+            <a
+              key={label}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Remonixa Technology on ${label}`}
+              className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-muted-foreground transition-all hover:-translate-y-0.5 hover:border-[oklch(0.6_0.24_295/0.5)] hover:text-white hover:shadow-[0_0_20px_oklch(0.6_0.24_295/0.45)]"
+            >
+              <Icon className="h-4 w-4" />
+            </a>
+          ))}
         </div>
 
         {/* Divider */}
