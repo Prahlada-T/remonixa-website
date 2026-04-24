@@ -16,7 +16,6 @@ import { CtaBanner } from "@/components/site/CtaBanner";
 import { Faq } from "@/components/site/Faq";
 import { Contact } from "@/components/site/Contact";
 import { VisionMission } from "@/components/site/VisionMission";
-import { SocialMedia } from "@/components/site/SocialMedia";
 import { Footer } from "@/components/site/Footer";
 import { AiAssistant } from "@/components/site/AiAssistant";
 
@@ -74,7 +73,6 @@ function Index() {
         <Pricing />
         <CtaBanner />
         <Faq />
-        <SocialMedia />
         <Contact />
       </main>
       <Footer />
