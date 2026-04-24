@@ -6,7 +6,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-[#0b0f1a] pt-16 pb-10">
+    <footer className="relative overflow-hidden bg-[#0b0f1a] pt-10 pb-6">
       {/* Top glow divider */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.65_0.24_295/0.6)] to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 top-[-80px] h-40 bg-[radial-gradient(ellipse_at_top,oklch(0.6_0.24_295/0.18),transparent_70%)]" />
