@@ -49,7 +49,7 @@ export function ReportPreview() {
           <div className="glass-card rounded-2xl p-6 relative overflow-hidden">
             <div className="flex items-center justify-between mb-4 pb-4 border-b border-border/50">
               <div>
-                <div className="text-xs font-mono text-muted-foreground">REPORT-2025-0481</div>
+                <div className="text-xs font-mono text-muted-foreground">REPORT-2026-0481</div>
                 <div className="font-bold text-lg mt-0.5">Penetration Test Findings</div>
               </div>
               <div className="text-xs px-3 py-1 rounded-full bg-success/15 text-success border border-success/30 font-mono">

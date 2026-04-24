@@ -42,13 +42,6 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:image", content: "https://remonixa-technology.lovable.app/remonixa-icon.png" },
       { property: "og:url", content: "https://remonixa-technology.lovable.app/" },
-      { name: "twitter:title", content: "Remonixa Technology — VAPT & Penetration Testing" },
-      {
-        name: "twitter:description",
-        content:
-          "Manual + automated VAPT for web, network, and API. OWASP, ISO 27001, GDPR aligned.",
-      },
-      { name: "twitter:image", content: "https://remonixa-technology.lovable.app/remonixa-icon.png" },
     ],
     links: [{ rel: "canonical", href: "https://remonixa-technology.lovable.app/" }],
   }),
