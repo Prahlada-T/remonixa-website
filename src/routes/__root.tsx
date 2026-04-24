@@ -41,8 +41,6 @@ export const Route = createRootRoute({
           "VAPT, vulnerability assessment, penetration testing, cybersecurity, web application security, network security, API security, OWASP, ISO 27001, GDPR compliance, ethical hacking, security audit, red team, bug bounty, cyber threats, infosec India, Remonixa Technology",
       },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@RemonixaTech" },
-      { name: "twitter:creator", content: "@RemonixaTech" },
       { property: "og:site_name", content: "Remonixa Technology" },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "en_US" },
@@ -57,11 +55,11 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", sizes: "32x32", href: "/remonixa-icon.png" },
-      { rel: "icon", type: "image/png", sizes: "192x192", href: "/remonixa-icon.png" },
-      { rel: "shortcut icon", type: "image/png", href: "/remonixa-icon.png" },
-      { rel: "apple-touch-icon", sizes: "180x180", href: "/remonixa-icon.png" },
-      { rel: "mask-icon", href: "/remonixa-icon.png", color: "#7c3aed" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/remonixa-icon.png?v=3" },
+      { rel: "icon", type: "image/png", sizes: "192x192", href: "/remonixa-icon.png?v=3" },
+      { rel: "shortcut icon", type: "image/png", href: "/remonixa-icon.png?v=3" },
+      { rel: "apple-touch-icon", sizes: "180x180", href: "/remonixa-icon.png?v=3" },
+      { rel: "mask-icon", href: "/remonixa-icon.png?v=3", color: "#7c3aed" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -80,12 +78,6 @@ export const Route = createRootRoute({
           logo: "https://remonixa-technology.lovable.app/remonixa-icon.png",
           description:
             "Remonixa Technology delivers professional VAPT, web, network, and API security testing services aligned with OWASP, ISO 27001, and GDPR.",
-          sameAs: [
-            "https://www.linkedin.com/company/remonixa-technology",
-            "https://twitter.com/RemonixaTech",
-            "https://github.com/remonixa",
-            "https://www.instagram.com/remonixa.technology",
-          ],
           contactPoint: {
             "@type": "ContactPoint",
             contactType: "customer support",
