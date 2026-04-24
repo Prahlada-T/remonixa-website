@@ -22,19 +22,34 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Remonixa Technology — VAPT & Penetration Testing Services" },
+      { title: "Remonixa Technology — VAPT, Penetration Testing & Cybersecurity" },
       {
         name: "description",
         content:
-          "Advanced VAPT services to identify, exploit, and fix vulnerabilities across web apps, networks, and APIs. OWASP, ISO 27001 & GDPR aligned.",
+          "Remonixa Technology offers expert VAPT, web, network & API penetration testing. OWASP, ISO 27001 & GDPR aligned reports built for developers and CISOs.",
+      },
+      {
+        name: "keywords",
+        content:
+          "VAPT services, penetration testing company, web application security, API penetration testing, network VAPT, OWASP testing, ISO 27001 audit, GDPR security, ethical hacking India, cybersecurity consulting, Remonixa Technology",
       },
       { property: "og:title", content: "Remonixa Technology — VAPT & Penetration Testing" },
       {
         property: "og:description",
-        content: "Secure your business before hackers do. Manual + automated VAPT with developer-friendly reports.",
+        content:
+          "Secure your business before hackers do. Manual + automated VAPT with developer-friendly reports and remediation guidance.",
       },
-      { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://remonixa-technology.lovable.app/remonixa-icon.png" },
+      { property: "og:url", content: "https://remonixa-technology.lovable.app/" },
+      { name: "twitter:title", content: "Remonixa Technology — VAPT & Penetration Testing" },
+      {
+        name: "twitter:description",
+        content:
+          "Manual + automated VAPT for web, network, and API. OWASP, ISO 27001, GDPR aligned.",
+      },
+      { name: "twitter:image", content: "https://remonixa-technology.lovable.app/remonixa-icon.png" },
     ],
+    links: [{ rel: "canonical", href: "https://remonixa-technology.lovable.app/" }],
   }),
 });
 
