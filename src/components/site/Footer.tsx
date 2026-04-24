@@ -45,10 +45,10 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="mt-10 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+        <div className="mt-6 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
         {/* Links + copyright */}
-        <div className="mt-8 flex flex-col items-center gap-4 md:flex-row md:justify-between">
+        <div className="mt-4 flex flex-col items-center gap-3 md:flex-row md:justify-between">
           <p className="text-xs text-muted-foreground/80 order-2 md:order-1">
             © {year} Remonixa Technology. All rights reserved.
           </p>
