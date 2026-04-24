@@ -40,18 +40,14 @@ export const Route = createRootRoute({
         content:
           "VAPT, vulnerability assessment, penetration testing, cybersecurity, web application security, network security, API security, OWASP, ISO 27001, GDPR compliance, ethical hacking, security audit, red team, bug bounty, cyber threats, infosec India, Remonixa Technology",
       },
-      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:site_name", content: "Remonixa Technology" },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "en_US" },
       { title: "Remonixa Technology" },
       { property: "og:title", content: "Remonixa Technology" },
-      { name: "twitter:title", content: "Remonixa Technology" },
       { name: "description", content: "Remonixa Technology delivers professional cybersecurity services including VAPT web application security testing and risk assessment to protect digital assets a" },
       { property: "og:description", content: "Remonixa Technology delivers professional cybersecurity services including VAPT web application security testing and risk assessment to protect digital assets a" },
-      { name: "twitter:description", content: "Remonixa Technology delivers professional cybersecurity services including VAPT web application security testing and risk assessment to protect digital assets a" },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/b083f2b1-b4fb-4107-9811-4ccc28a636cb" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/b083f2b1-b4fb-4107-9811-4ccc28a636cb" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
