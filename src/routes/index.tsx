@@ -64,6 +64,7 @@ function Index() {
         <HeroFeatures />
         <Services />
         <WhyChoose />
+        <VisionMission />
         <Process />
         <Tools />
         <RiskScenarios />
@@ -73,6 +74,7 @@ function Index() {
         <Pricing />
         <CtaBanner />
         <Faq />
+        <SocialMedia />
         <Contact />
       </main>
       <Footer />
