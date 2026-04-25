@@ -1,8 +1,7 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import emailjs from "@emailjs/browser";
-import ReCAPTCHA from "react-google-recaptcha";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,16 +12,16 @@ const EMAILJS_SERVICE_ID = "service_d0ng3rj";
 const EMAILJS_PUBLIC_KEY = "tHxbSlXGKCFiE0EnK";
 const EMAILJS_ADMIN_TEMPLATE_ID = "template_dfhpwn7";
 const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_7up5tjh";
-const RECAPTCHA_SITE_KEY = "6Ld9cMksAAAAADlDrbga-Le3ii7ZZBPKBcnkkgPq";
 const RATE_LIMIT_KEY = "remonixa_contact_submissions";
 const RATE_LIMIT_MAX = 3;
-const RATE_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+
+const sanitize = (v: string) => v.replace(/[<>]/g, "");
 
 const schema = z.object({
   name: z.string().trim().min(2, "Name must be at least 2 characters").max(100),
   email: z.string().trim().email("Invalid email").max(255),
   company: z.string().trim().max(100).optional().or(z.literal("")),
-  website: z.string().trim().max(255).optional().or(z.literal("")),
   message: z.string().trim().min(10, "Tell us a bit more (10+ chars)").max(1000),
 });
 
@@ -46,30 +45,30 @@ function recordSubmission() {
 
 export function Contact() {
   const [submitting, setSubmitting] = useState(false);
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     const formData = new FormData(form);
 
-    // Honeypot check — bots tend to fill every field
-    if ((formData.get("hp_field") as string)?.trim()) {
-      toast.success("Your request has been sent successfully. We will contact you within 24 hours.");
+    // Honeypot — bots tend to fill every field. Silently block.
+    if ((formData.get("website") as string)?.trim()) {
+      toast.success("Request sent successfully. We will contact you within 24 hours.");
       form.reset();
       return;
     }
 
-    const data = Object.fromEntries(formData);
+    const raw = Object.fromEntries(formData);
+    const data = {
+      name: sanitize(String(raw.name ?? "")),
+      email: sanitize(String(raw.email ?? "")),
+      company: sanitize(String(raw.company ?? "")),
+      message: sanitize(String(raw.message ?? "")),
+    };
+
     const result = schema.safeParse(data);
     if (!result.success) {
       toast.error(result.error.issues[0]?.message ?? "Please check the form");
-      return;
-    }
-
-    if (!captchaToken) {
-      toast.error("Please complete the CAPTCHA verification");
       return;
     }
 
@@ -79,16 +78,14 @@ export function Contact() {
       return;
     }
 
-    const { name, email, company, website, message } = result.data;
+    const { name, email, company, message } = result.data;
     const templateParams = {
       name,
       email,
       company: company || "—",
-      website: website || "—",
       message,
       to_email: "remonixanotify@gmail.com",
       reply_to: email,
-      "g-recaptcha-response": captchaToken,
     };
 
     setSubmitting(true);
@@ -108,8 +105,6 @@ export function Contact() {
       recordSubmission();
       toast.success("Request sent successfully. We will contact you within 24 hours.");
       form.reset();
-      recaptchaRef.current?.reset();
-      setCaptchaToken(null);
     } catch (err) {
       console.error("EmailJS error:", err);
       toast.error("Failed to send. Please try again or email us directly.");
@@ -157,15 +152,9 @@ export function Contact() {
               <Input id="email" name="email" type="email" placeholder="jane@company.com" maxLength={255} required className="bg-background/50 border-border/60" />
             </div>
           </div>
-          <div className="grid sm:grid-cols-2 gap-5">
-            <div className="space-y-2">
-              <Label htmlFor="company">Company</Label>
-              <Input id="company" name="company" placeholder="Acme Inc." maxLength={100} className="bg-background/50 border-border/60" />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="website">Website</Label>
-              <Input id="website" name="website" placeholder="https://acme.com" maxLength={255} className="bg-background/50 border-border/60" />
-            </div>
+          <div className="space-y-2">
+            <Label htmlFor="company">Company</Label>
+            <Input id="company" name="company" placeholder="Acme Inc." maxLength={100} className="bg-background/50 border-border/60" />
           </div>
           <div className="space-y-2">
             <Label htmlFor="message">Message *</Label>
@@ -174,7 +163,7 @@ export function Contact() {
               name="message"
               placeholder="Tell us about your scope: web apps, APIs, network size, timeline, compliance needs..."
               rows={5}
-              maxLength={2000}
+              maxLength={1000}
               required
               className="bg-background/50 border-border/60 resize-none"
             />
@@ -183,28 +172,17 @@ export function Contact() {
           {/* Honeypot — hidden from real users */}
           <input
             type="text"
-            name="hp_field"
+            name="website"
             tabIndex={-1}
             autoComplete="off"
             aria-hidden="true"
-            style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0, pointerEvents: "none" }}
+            style={{ display: "none" }}
           />
-
-          <div className="flex justify-center">
-            <ReCAPTCHA
-              ref={recaptchaRef}
-              sitekey={RECAPTCHA_SITE_KEY}
-              theme="dark"
-              onChange={(token) => setCaptchaToken(token)}
-              onExpired={() => setCaptchaToken(null)}
-              onErrored={() => setCaptchaToken(null)}
-            />
-          </div>
 
           <Button
             type="submit"
             size="lg"
-            disabled={submitting || !captchaToken}
+            disabled={submitting}
             className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_30px_-6px_var(--primary)] h-12"
           >
             {submitting ? "Sending..." : (
