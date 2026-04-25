@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import emailjs from "@emailjs/browser";
+import ReCAPTCHA from "react-google-recaptcha";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,16 +13,17 @@ const EMAILJS_SERVICE_ID = "service_d0ng3rj";
 const EMAILJS_PUBLIC_KEY = "tHxbSlXGKCFiE0EnK";
 const EMAILJS_ADMIN_TEMPLATE_ID = "template_dfhpwn7";
 const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_7up5tjh";
+const RECAPTCHA_SITE_KEY = "6Ld9cMksAAAAADlDrbga-Le3ii7ZZBPKBcnkkgPq";
 const RATE_LIMIT_KEY = "remonixa_contact_submissions";
 const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 const schema = z.object({
-  name: z.string().trim().min(1, "Name required").max(100),
+  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100),
   email: z.string().trim().email("Invalid email").max(255),
   company: z.string().trim().max(100).optional().or(z.literal("")),
   website: z.string().trim().max(255).optional().or(z.literal("")),
-  message: z.string().trim().min(10, "Tell us a bit more (10+ chars)").max(2000),
+  message: z.string().trim().min(10, "Tell us a bit more (10+ chars)").max(1000),
 });
 
 function getRecentSubmissions(): number[] {
@@ -44,20 +46,36 @@ function recordSubmission() {
 
 export function Contact() {
   const [submitting, setSubmitting] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form));
+    const formData = new FormData(form);
+
+    // Honeypot check — bots tend to fill every field
+    if ((formData.get("hp_field") as string)?.trim()) {
+      toast.success("Your request has been sent successfully. We will contact you within 24 hours.");
+      form.reset();
+      return;
+    }
+
+    const data = Object.fromEntries(formData);
     const result = schema.safeParse(data);
     if (!result.success) {
       toast.error(result.error.issues[0]?.message ?? "Please check the form");
       return;
     }
 
+    if (!captchaToken) {
+      toast.error("Please complete the CAPTCHA verification");
+      return;
+    }
+
     const recent = getRecentSubmissions();
     if (recent.length >= RATE_LIMIT_MAX) {
-      toast.error("Daily limit reached (3 submissions per day). Please try again tomorrow.");
+      toast.error("Too many attempts. Please try again later.");
       return;
     }
 
@@ -70,6 +88,7 @@ export function Contact() {
       message,
       to_email: "remonixanotify@gmail.com",
       reply_to: email,
+      "g-recaptcha-response": captchaToken,
     };
 
     setSubmitting(true);
@@ -87,8 +106,10 @@ export function Contact() {
         { publicKey: EMAILJS_PUBLIC_KEY },
       );
       recordSubmission();
-      toast.success("Your request has been sent successfully. We will contact you within 24 hours.");
+      toast.success("Request sent successfully. We will contact you within 24 hours.");
       form.reset();
+      recaptchaRef.current?.reset();
+      setCaptchaToken(null);
     } catch (err) {
       console.error("EmailJS error:", err);
       toast.error("Failed to send. Please try again or email us directly.");
@@ -158,10 +179,32 @@ export function Contact() {
               className="bg-background/50 border-border/60 resize-none"
             />
           </div>
+
+          {/* Honeypot — hidden from real users */}
+          <input
+            type="text"
+            name="hp_field"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0, pointerEvents: "none" }}
+          />
+
+          <div className="flex justify-center">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={RECAPTCHA_SITE_KEY}
+              theme="dark"
+              onChange={(token) => setCaptchaToken(token)}
+              onExpired={() => setCaptchaToken(null)}
+              onErrored={() => setCaptchaToken(null)}
+            />
+          </div>
+
           <Button
             type="submit"
             size="lg"
-            disabled={submitting}
+            disabled={submitting || !captchaToken}
             className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_30px_-6px_var(--primary)] h-12"
           >
             {submitting ? "Sending..." : (
