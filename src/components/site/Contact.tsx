@@ -46,20 +46,36 @@ function recordSubmission() {
 
 export function Contact() {
   const [submitting, setSubmitting] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const recaptchaRef = useRef<ReCAPTCHA>(null);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form));
+    const formData = new FormData(form);
+
+    // Honeypot check — bots tend to fill every field
+    if ((formData.get("hp_field") as string)?.trim()) {
+      toast.success("Your request has been sent successfully. We will contact you within 24 hours.");
+      form.reset();
+      return;
+    }
+
+    const data = Object.fromEntries(formData);
     const result = schema.safeParse(data);
     if (!result.success) {
       toast.error(result.error.issues[0]?.message ?? "Please check the form");
       return;
     }
 
+    if (!captchaToken) {
+      toast.error("Please complete the CAPTCHA verification");
+      return;
+    }
+
     const recent = getRecentSubmissions();
     if (recent.length >= RATE_LIMIT_MAX) {
-      toast.error("Daily limit reached (3 submissions per day). Please try again tomorrow.");
+      toast.error("Too many attempts. Please try again later.");
       return;
     }
 
@@ -72,6 +88,7 @@ export function Contact() {
       message,
       to_email: "remonixanotify@gmail.com",
       reply_to: email,
+      "g-recaptcha-response": captchaToken,
     };
 
     setSubmitting(true);
@@ -89,8 +106,10 @@ export function Contact() {
         { publicKey: EMAILJS_PUBLIC_KEY },
       );
       recordSubmission();
-      toast.success("Your request has been sent successfully. We will contact you within 24 hours.");
+      toast.success("Request sent successfully. We will contact you within 24 hours.");
       form.reset();
+      recaptchaRef.current?.reset();
+      setCaptchaToken(null);
     } catch (err) {
       console.error("EmailJS error:", err);
       toast.error("Failed to send. Please try again or email us directly.");
