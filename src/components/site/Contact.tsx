@@ -19,11 +19,11 @@ const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 const schema = z.object({
-  name: z.string().trim().min(1, "Name required").max(100),
+  name: z.string().trim().min(2, "Name must be at least 2 characters").max(100),
   email: z.string().trim().email("Invalid email").max(255),
   company: z.string().trim().max(100).optional().or(z.literal("")),
   website: z.string().trim().max(255).optional().or(z.literal("")),
-  message: z.string().trim().min(10, "Tell us a bit more (10+ chars)").max(2000),
+  message: z.string().trim().min(10, "Tell us a bit more (10+ chars)").max(1000),
 });
 
 function getRecentSubmissions(): number[] {
