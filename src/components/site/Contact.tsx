@@ -14,7 +14,7 @@ const EMAILJS_ADMIN_TEMPLATE_ID = "template_dfhpwn7";
 const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_7up5tjh";
 const RATE_LIMIT_KEY = "remonixa_contact_submissions";
 const RATE_LIMIT_MAX = 3;
-const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+const RATE_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
 
 const sanitize = (v: string) => v.replace(/[<>]/g, "");
 
@@ -74,7 +74,9 @@ export function Contact() {
 
     const recent = getRecentSubmissions();
     if (recent.length >= RATE_LIMIT_MAX) {
-      toast.error("Too many attempts. Please try again later.");
+      toast.error(
+        "You've reached today's limit of 3 requests. Please try again tomorrow — we truly appreciate your interest and look forward to connecting with you soon. 🙏",
+      );
       return;
     }
 
