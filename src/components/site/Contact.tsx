@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import emailjs from "@emailjs/browser";
+import ReCAPTCHA from "react-google-recaptcha";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +13,7 @@ const EMAILJS_SERVICE_ID = "service_d0ng3rj";
 const EMAILJS_PUBLIC_KEY = "tHxbSlXGKCFiE0EnK";
 const EMAILJS_ADMIN_TEMPLATE_ID = "template_dfhpwn7";
 const EMAILJS_AUTOREPLY_TEMPLATE_ID = "template_7up5tjh";
+const RECAPTCHA_SITE_KEY = "6Ld9cMksAAAAADlDrbga-Le3ii7ZZBPKBcnkkgPq";
 const RATE_LIMIT_KEY = "remonixa_contact_submissions";
 const RATE_LIMIT_MAX = 3;
 const RATE_LIMIT_WINDOW_MS = 24 * 60 * 60 * 1000; // 24 hours
