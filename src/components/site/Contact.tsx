@@ -179,10 +179,32 @@ export function Contact() {
               className="bg-background/50 border-border/60 resize-none"
             />
           </div>
+
+          {/* Honeypot — hidden from real users */}
+          <input
+            type="text"
+            name="hp_field"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0, pointerEvents: "none" }}
+          />
+
+          <div className="flex justify-center">
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              sitekey={RECAPTCHA_SITE_KEY}
+              theme="dark"
+              onChange={(token) => setCaptchaToken(token)}
+              onExpired={() => setCaptchaToken(null)}
+              onErrored={() => setCaptchaToken(null)}
+            />
+          </div>
+
           <Button
             type="submit"
             size="lg"
-            disabled={submitting}
+            disabled={submitting || !captchaToken}
             className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_30px_-6px_var(--primary)] h-12"
           >
             {submitting ? "Sending..." : (
