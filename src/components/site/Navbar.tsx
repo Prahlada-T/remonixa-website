@@ -23,14 +23,14 @@ export function Navbar() {
           className="group inline-flex items-center gap-3 leading-none transition-opacity duration-300 hover:opacity-90"
           aria-label="Remonixa Technology"
         >
-          <span className="relative inline-flex h-10 w-10 items-center justify-center">
+          <span className="relative inline-flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center">
             <span className="absolute inset-0 rounded-full bg-[oklch(0.6_0.24_295/0.35)] blur-md" />
             <img
               src={logoMark}
               alt=""
-              width={40}
-              height={40}
-              className="relative h-10 w-10 object-contain drop-shadow-[0_0_10px_oklch(0.65_0.24_295/0.6)]"
+              width={64}
+              height={64}
+              className="relative h-12 w-12 sm:h-16 sm:w-16 object-contain drop-shadow-[0_0_10px_oklch(0.65_0.24_295/0.6)]"
             />
           </span>
           <span className="inline-flex items-baseline gap-1.5">
