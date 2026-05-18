@@ -31,7 +31,7 @@ export function Hero() {
         <span className="particle" style={{ left: "70%", top: "85%", width: 3, height: 3, animationDelay: "5s" }} />
       </div>
 
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8 w-full">
+      <div className="mx-auto max-w-[1600px] px-5 sm:px-6 lg:px-8 w-full">
         {/* Mobile-first stacked / Desktop 2-column */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* COPY */}

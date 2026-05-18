@@ -35,7 +35,7 @@ export function VisionMission() {
         <div className="absolute inset-0 noise-overlay opacity-50" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-5 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto">
           <p className="text-xs font-mono text-[oklch(0.75_0.22_285)] uppercase tracking-[0.2em] mb-3">
             / who we are

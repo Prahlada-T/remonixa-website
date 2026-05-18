@@ -26,7 +26,7 @@ const features = [
 export function HeroFeatures() {
   return (
     <section className="relative -mt-2 sm:-mt-4 lg:-mt-8 pb-10 sm:pb-14 lg:pb-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1600px] px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-5 items-stretch">
           {features.map((f) => (
             <div

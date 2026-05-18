@@ -5,7 +5,7 @@ import reportImg from "@/assets/report-preview.jpg";
 export function ReportPreview() {
   return (
     <section id="report" className="relative py-16 sm:py-20 lg:py-24 bg-surface/30">
-      <div className="mx-auto max-w-7xl px-6 grid lg:grid-cols-2 gap-16 items-center">
+      <div className="mx-auto max-w-[1600px] px-6 grid lg:grid-cols-2 gap-16 items-center">
         <div>
           <p className="text-sm font-mono text-primary uppercase tracking-widest mb-3">/ deliverable</p>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">
