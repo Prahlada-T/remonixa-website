@@ -11,7 +11,7 @@ export function Footer() {
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.65_0.24_295/0.6)] to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 top-[-80px] h-40 bg-[radial-gradient(ellipse_at_top,oklch(0.6_0.24_295/0.18),transparent_70%)]" />
 
-      <div className="relative mx-auto max-w-7xl px-6">
+      <div className="relative mx-auto max-w-[1600px] px-6">
         {/* Brand block — centered */}
         <div className="flex flex-col items-center text-center">
           <span className="relative inline-flex h-14 w-14 items-center justify-center">

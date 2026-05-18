@@ -16,7 +16,7 @@ export function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#070314]/80 border-b border-white/5">
-      <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-center md:justify-between px-4 sm:px-6">
+      <div className="relative mx-auto flex h-20 max-w-[1600px] items-center justify-center md:justify-between px-4 sm:px-6">
         {/* Brand — logo mark + wordmark (centered on mobile, left on desktop) */}
         <a
           href="#top"
@@ -81,7 +81,7 @@ export function Navbar() {
       {/* Mobile menu */}
       {open && (
         <div className="md:hidden border-t border-white/5 bg-[#020617]/95 backdrop-blur-xl">
-          <nav className="mx-auto max-w-7xl px-6 py-4 flex flex-col gap-3">
+          <nav className="mx-auto max-w-[1600px] px-6 py-4 flex flex-col gap-3">
             {links.map((l) => (
               <a
                 key={l.href}

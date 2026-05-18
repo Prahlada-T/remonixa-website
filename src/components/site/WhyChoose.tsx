@@ -12,7 +12,7 @@ const usps = [
 export function WhyChoose() {
   return (
     <section className="relative py-16 sm:py-20 lg:py-24 bg-surface/30">
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-[1600px] px-6">
         <div className="max-w-2xl mx-auto text-center">
           <p className="text-sm font-mono text-primary uppercase tracking-widest mb-3">/ why remonixa</p>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">
