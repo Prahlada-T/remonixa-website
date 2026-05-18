@@ -10,7 +10,7 @@ import { Tools } from "@/components/site/Tools";
 import { RiskScenarios } from "@/components/site/RiskScenarios";
 import { ReportPreview } from "@/components/site/ReportPreview";
 import { Compliance } from "@/components/site/Compliance";
-import { Testimonials } from "@/components/site/Testimonials";
+
 import { Pricing } from "@/components/site/Pricing";
 import { CtaBanner } from "@/components/site/CtaBanner";
 import { Faq } from "@/components/site/Faq";
@@ -62,7 +62,7 @@ function Index() {
         <RiskScenarios />
         <ReportPreview />
         <Compliance />
-        <Testimonials />
+        
         <Pricing />
         <CtaBanner />
         <Faq />
